@@ -20,7 +20,10 @@ new Vue({
             this.remainingAttempts = MAX_ATTEMPTS;
         },
         chooseWord() {
-            let word = "Parzibyte"; // TODO: make this random
+            // Get words stored in localstorage
+            const words = getWords();
+            // Choose random
+            let word = words[Math.floor(Math.random() * words.length)];
             this.prepareWord(word);
         },
         prepareWord(word) {
