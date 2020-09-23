@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman game by parzibyte</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+
+        body {
+            font-family: 'ZCOOL KuaiLe', cursive;
+        }
+
+        img.hangman {
+            max-width: 400px;
+        }
+
+        .displayed-word {
+            letter-spacing: 4px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row" id="app">
+            <div class="col-12 text-center">
+                <h1>Hangman game - By Parzibyte</h1>
+                <h3 class="displayed-word">{{displayWord()}}</h3>
+                <strong>Remaining attempts: {{remainingAttempts}}</strong>
+                <br>
+                <img class="img-fluid hangman" :src="imagePath()" alt="">
+            </div>
+            <div class="col-12 text-center">
+                <button :disabled="letter.disabled" @click="attemptWithLetter(letter.letter)" v-for="letter in letters"
+                    class="btn btn-success m-1 btn-lg">{{letter.letter}}</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="vue.min.js"></script>
+<script src="script.js"></script>
+
+</html>
