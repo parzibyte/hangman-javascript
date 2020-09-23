@@ -9,11 +9,43 @@ new Vue({
         remainingAttempts: 0,
     }),
     mounted() {
-        this.resetAttempts();
-        this.setupKeys();
-        this.chooseWord();
+        this.resetGame();
     },
     methods: {
+        resetGame() {
+            this.resetAttempts();
+            this.setupKeys();
+            this.chooseWord();
+        },
+        checkGameStatus() {
+            if (this.playerWins()) {
+                alert("You win!");
+                this.resetGame();
+            }
+            if (this.playerLoses()) {
+                alert("You lose. The word was " + this.getUnhiddenWord());
+                this.resetGame();
+            }
+        },
+        getUnhiddenWord() {
+            let word = "";
+            for (const letter of this.hiddenWord) {
+                word += letter.letter;
+            }
+            return word;
+        },
+        playerWins() {
+            // If there's at least a hidden letter, the player hasn't win yet
+            for (const letter of this.hiddenWord) {
+                if (letter.hidden) {
+                    return false;
+                }
+            }
+            return true;
+        },
+        playerLoses() {
+            return this.remainingAttempts <= 0;
+        },
         imagePath() {
             return `img/Ahorcado-${MAX_ATTEMPTS - this.remainingAttempts}.png`;
         },
@@ -78,10 +110,10 @@ new Vue({
             Vue.set(this.letters[letter], "disabled", true);
             if (!this.letterExistsInWord(letter)) {
                 this.remainingAttempts -= 1;
-                return;
             } else {
                 this.discoverLetter(letter);
             }
+            this.checkGameStatus();
         }
     }
 });
