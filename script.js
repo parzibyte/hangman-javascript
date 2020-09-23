@@ -1,5 +1,6 @@
-const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
-    MAX_ATTEMPTS = 6;
+const ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+    MAX_ATTEMPTS = 6,
+    MASK_CHAR = "-";
 new Vue({
     el: "#app",
     data: () => ({
@@ -41,7 +42,7 @@ new Vue({
             let displayedWord = "";
             for (const letter of this.hiddenWord) {
                 if (letter.hidden) {
-                    displayedWord += "_";
+                    displayedWord += MASK_CHAR;
                 } else {
                     displayedWord += letter.letter;
                 }
@@ -51,7 +52,7 @@ new Vue({
         },
         setupKeys() {
             // We make a dictionary from the letters
-            for (const letter of alphabet) {
+            for (const letter of ALPHABET) {
                 Vue.set(this.letters, letter, {
                     letter,
                     disabled: false, // We disable it when the user clicks on it
