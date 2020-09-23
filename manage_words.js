@@ -24,8 +24,16 @@ new Vue({
                 alert("The word already exists");
             }
         },
-        deleteWord(index) {
-            if (!confirm("Are you sure?")) return;
+        async deleteWord(index) {
+            const result = await Swal.fire({
+                title: 'Deleting word',
+                text: "Are you sure?",
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'No, take me back',
+                confirmButtonText: 'Yes, delete it'
+            });
+            if (!result.value) return;
             this.words.splice(index, 1);
             saveWords(this.words);
         },

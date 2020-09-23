@@ -8,7 +8,12 @@ new Vue({
         hiddenWord: [],
         remainingAttempts: 0,
     }),
-    mounted() {
+    async mounted() {
+        await Swal.fire(
+            'Hangman game',
+            'Proudly brought to you by parzibyte - https://parzibyte.me',
+            'info'
+        );
         this.resetGame();
     },
     methods: {
@@ -19,11 +24,11 @@ new Vue({
         },
         checkGameStatus() {
             if (this.playerWins()) {
-                alert("You win!");
+                Swal.fire("You win! The word was " + this.getUnhiddenWord());
                 this.resetGame();
             }
             if (this.playerLoses()) {
-                alert("You lose. The word was " + this.getUnhiddenWord());
+                Swal.fire("You lose. The word was " + this.getUnhiddenWord());
                 this.resetGame();
             }
         },
@@ -52,9 +57,13 @@ new Vue({
         resetAttempts() {
             this.remainingAttempts = MAX_ATTEMPTS;
         },
-        chooseWord() {
+        async chooseWord() {
             // Get words stored in localstorage
             const words = getWords();
+            if (!words.length) {
+                await Swal.fire("Please add some words so you can play (go to Manage words)");
+                window.location = "./words.html";
+            }
             // Choose random
             let word = words[Math.floor(Math.random() * words.length)];
             this.prepareWord(word);
