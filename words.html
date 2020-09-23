@@ -6,22 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman game by parzibyte</title>
     <link rel="stylesheet" href="bootstrap.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
-
-        body {
-            font-family: 'ZCOOL KuaiLe', cursive;
-        }
-
-        img.hangman {
-            max-width: 400px;
-        }
-
-        .displayed-word {
-            letter-spacing: 4px;
-
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -56,7 +41,7 @@
                 <h1>Manage words</h1>
             </div>
             <div class="col-12 text-center">
-                <div class="form-inline">
+                <div class="form-inline mb-2">
                     <label class="mr-2" for="newWord">Add new word:</label>
                     <input @keyup="deleteWhiteSpaces()" placeholder="Write word here..." class="m-2 form-control"
                         id="newWord" type="text" v-model="newWord">
