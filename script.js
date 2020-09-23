@@ -1,5 +1,5 @@
 const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
-MAX_ATTEMPTS=6;
+    MAX_ATTEMPTS = 6;
 new Vue({
     el: "#app",
     data: () => ({
@@ -13,8 +13,8 @@ new Vue({
         this.chooseWord();
     },
     methods: {
-        imagePath(){
-            return `img/Ahorcado-${MAX_ATTEMPTS-this.remainingAttempts}.png`;
+        imagePath() {
+            return `img/Ahorcado-${MAX_ATTEMPTS - this.remainingAttempts}.png`;
         },
         resetAttempts() {
             this.remainingAttempts = MAX_ATTEMPTS;
