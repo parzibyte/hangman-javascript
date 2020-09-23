@@ -44,7 +44,7 @@ new Vue({
                 saveWords(this.words);
                 this.newWord = "";
             } else {
-                alert("The word already exists");
+                Swal.fire("The word already exists");
             }
         },
         async deleteWord(index) {
