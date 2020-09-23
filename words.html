@@ -36,10 +36,10 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Play&nbsp;<i class="fa fa-home"></i></a>
+                    <a class="nav-link" href="index.html">Play&nbsp;<i class="fa fa-home"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="words.html">Manage words&nbsp;<i class="fa fa-home"></i></a>
+                    <a class="nav-link active" href="words.html">Manage words&nbsp;<i class="fa fa-home"></i></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -53,21 +53,41 @@
     <main class="container-fluid">
         <div class="row" id="app">
             <div class="col-12 text-center">
-                <h1>Hangman game - By Parzibyte</h1>
-                <h3 class="displayed-word">{{displayWord()}}</h3>
-                <strong>Remaining attempts: {{remainingAttempts}}</strong>
-                <br>
-                <img class="img-fluid hangman" :src="imagePath()" alt="">
+                <h1>Manage words</h1>
             </div>
             <div class="col-12 text-center">
-                <button :disabled="letter.disabled" @click="attemptWithLetter(letter.letter)" v-for="letter in letters"
-                    class="btn btn-success m-1 btn-lg">{{letter.letter}}</button>
+                <div class="form-inline">
+                    <label class="mr-2" for="newWord">Add new word:</label>
+                    <input @keyup="deleteWhiteSpaces()" placeholder="Write word here..." class="m-2 form-control"
+                        id="newWord" type="text" v-model="newWord">
+                    <button @click="saveWord()" :disabled="newWord.length <= 0" class="btn btn-success">Save</button>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(word, index) in words">
+                                <td>{{word}}</td>
+                                <td>
+                                    <button @click="deleteWord(index)" class="btn btn-outline-danger">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 </body>
 <script src="vue.min.js"></script>
 <script src="words.js"></script>
-<script src="script.js"></script>
+<script src="manage_words.js"></script>
 
 </html>
