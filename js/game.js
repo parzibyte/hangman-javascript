@@ -23,7 +23,7 @@ excepto si este es un proyecto de un estudiante.
 */
 const ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
     MAX_ATTEMPTS = 6,
-    MASK_CHAR = "-";
+    MASK_CHAR = "_";
 new Vue({
     el: "#app",
     data: () => ({
