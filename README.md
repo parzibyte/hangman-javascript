@@ -19,3 +19,6 @@ El juego está escrito con el lenguaje JavaScript, usando Vue.js y Bootstrap. Cu
 
 ## Tutorial
 Aquí: https://parzibyte.me/blog/2020/09/24/ahorcado-juego-javascript/
+
+## Demo
+https://parzibyte.github.io/hangman-javascript/index.html
